@@ -1,2 +1,1 @@
-import Navigation from "./Navigation/Navigation";
-export { Navigation };
+const aa = 2;

@@ -11,10 +11,13 @@ module.exports = {
       template: "./index.html"
     })
   ],
-  entry: "./src/index.tsx",
+  entry: {
+    index: "./src/index.tsx"
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    chunkFilename: "[name].bundle.js",
+    filename: "[name].bundle.js"
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".json"]

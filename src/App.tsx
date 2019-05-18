@@ -1,9 +1,7 @@
 import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./assets/base/style.less";
-import { SignUpPage, MakeGroupPage } from "./pages";
-import { Navigation } from "./components";
-import MainPage from "./pages/MainPage";
+import { MainPage } from "./pages";
 
 class App extends React.Component<any, any> {
   public home = "/";
@@ -13,11 +11,8 @@ class App extends React.Component<any, any> {
     return (
       <>
         <Router>
-          <Navigation path1={this.signUp} path2={this.makeGroup} />
           <Switch>
             <Route exact path={this.home} render={() => <MainPage />} />
-            <Route path={this.signUp} render={() => <SignUpPage />} />
-            <Route path={this.makeGroup} render={() => <MakeGroupPage />} />
           </Switch>
         </Router>
       </>
