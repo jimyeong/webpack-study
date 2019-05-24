@@ -5,16 +5,24 @@ const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const cssFilename = "[name].[contenthash:8].css";
+const webpack = require("webpack");
 
 module.exports = merge(common, {
   mode: "production",
   optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: { test: /[\\/]node_modules[\\/]/, name: "vendors", chunks: "all" }
+      }
+    },
     minimizer: [new TerserPlugin({ parallel: true })]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
+      title: "caching",
       template: "./index.html",
       minify: {
         removeComments: true,
@@ -30,6 +38,7 @@ module.exports = merge(common, {
       // 이게 켜있어야 CSS 코드가 한 파일에 잘 들어감
       // CSS 도 만약 스플리팅 하고 싶다면 mini-css-extract-plugin 참고
       allChunks: true
-    })
+    }),
+    new webpack.HashedModuleIdsPlugin()
   ]
 });

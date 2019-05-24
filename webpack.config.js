@@ -8,6 +8,7 @@ module.exports = {
   devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
+      title: "webpack study",
       template: "./index.html"
     })
   ],
@@ -16,8 +17,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    chunkFilename: "[name].bundle.js",
-    filename: "[name].bundle.js"
+    filename: "[name].[contenthash].js"
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".json"]
